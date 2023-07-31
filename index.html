@@ -56,6 +56,65 @@
     </h2>
     <hr>
     <h2>Q2. Write code to explain prototype chaining</h2>
-    
+    <h2 class="code"><pre>
+        function Person(firstName, lastName, age) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+        }
+        Person.prototype.getFullName = function () {
+            return this.firstName + " " + this.lastName;
+        }
+        var person = new Person("Ram", "Suraj", 23);
+        console.log(person.hasOwnProperty("firstName"));  // true
+        console.log(person.hasOwnProperty("getFullName"));  // false
+        
+        console.log(person.getFullName());</pre>
+    </h2>
+    <h2 class="answer inline">Output:</h2>
+    <h2 class="inline code backcolor"><pre>
+        true
+        false
+        Ram Suraj</pre>
+    </h2><br>
+    <h2 class="answer inline">Explanation:</h2>
+    <h3 class="inline">In the above code, we used <span class="backcolor">hasOwnProperty() </span>method to check whether we have getFullName method as a property of the object.
+        <span class="backcolor">It returned false,</span> that means there is no such property. but when we used getFullName method, it returned the actual full name but the 
+        property was not there. As the getFullName() method was not there in the object but still we were able to use it. That's because we added the method in class 
+        Person’s prototype. The method went to the object through prototype chaining. it means the class had the method in it’s prototype, which went 
+        to it’s instance (person object) through prototype chaining. Whenever we create an instance of any class, the prototype of the class is created in object as well.
+        we have to check it in  __proto__  property. this property contains the prototype of it’s class. <br>
+        <span class="backcolor" style="font-style: italic;">person.__proto__.hasOwnProperty(‘getFullName’);</span>
+     </h3>
+    <hr>
+    <h2>Q3. Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays</h2>
+    <h2 class="answer">Answer:</h2>
+    <h2 class="code"><pre>
+        Array.prototype.sum = function () {
+            let sum = 0;
+            for (let i = 0; i < this.length; i++) {
+                sum += this[i];
+            }
+            return sum;
+        }
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = [56, 45, 78, 10, 1];
+        const arr3 = [7, 4, 5, 6, 7];
+        const ans = arr1.sum();
+        console.log("Sum of an array:" + ans);
+        console.log("Sum of an array2:" + arr2.sum());
+        console.log("Sum of an array3:" + arr3.sum());
+        </pre>
+    </h2>
+    <h2 class="answer inline">Output:</h2>
+    <h2 class="inline code backcolor"><pre>
+        Sum of an array:15
+        Sum of an array2:190
+        Sum of an array3:29</pre>
+    </h2>
+    <hr>
+    <h2>Q4. Write a JavaScript function to retrieve all the names of object's own and inherited properties.</h2>
+    <h2 class="answer">Answer:</h2>
+    <hr>
 </body>
 </html>
