@@ -115,6 +115,57 @@
     <hr>
     <h2>Q4. Write a JavaScript function to retrieve all the names of object's own and inherited properties.</h2>
     <h2 class="answer">Answer:</h2>
+    <h2 class="code"><pre>
+        function getAllPropertyNames(obj) {
+            const result = [];
+            let currentObj = obj;
+        
+            while (currentObj !== null) {
+                result.push(...Object.getOwnPropertyNames(currentObj));
+                currentObj = Object.getPrototypeOf(currentObj);
+                console.log(currentObj);
+            }
+        
+            return result;
+        }
+        
+        // Test with an example object
+        const parent = {
+            name: "Ramsuraj",
+            age: 23,
+            city: "Pondicherry"
+        };
+        
+        const child = Object.create(parent);
+        child.gender = "Male";
+        
+        const propertyNames = getAllPropertyNames(child);
+        console.log(propertyNames);</pre>
+    </h2>
+    <h2 class="answer inline">Output:</h2>
+    <h2 class="inline backcolor"><pre>
+    { name: 'Ramsuraj', age: 23, city: 'Pondicherry' }
+    [Object: null prototype] {}
+    null
+    [
+        'gender',
+        'name',
+        'age',
+        'city',
+        'constructor',
+        '__defineGetter__',
+        '__defineSetter__',
+        'hasOwnProperty',
+        '__lookupGetter__',
+        '__lookupSetter__',
+        'isPrototypeOf',
+        'propertyIsEnumerable',
+        'toString',
+        'valueOf',
+        '__proto__',
+        'toLocaleString'
+    ]</pre>
+</h2>
     <hr>
 </body>
 </html>
